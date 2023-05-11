@@ -4,9 +4,9 @@ import emailjs from "@emailjs/browser";
 import { MapChart } from "../components";
 import { useRef, useState } from "react";
 
-const serviceID = import.meta.env.SERVICE_ID;
-const templateID = import.meta.env.TEMPLATE_ID;
-const apiKey = import.meta.env.PUBLIC_API_KEY;
+// const serviceID = import.meta.env.SERVICE_ID;
+// const templateID = import.meta.env.TEMPLATE_ID;
+// const apiKey = import.meta.env.PUBLIC_API_KEY;
 
 const Section = styled.section`
   height: 100vh;
@@ -75,21 +75,31 @@ const Right = styled.div`
 
 const Contacts = () => {
   const form = useRef();
-  const [success, setSuccess] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSuccess(true);
 
-    emailjs.sendForm(serviceID, templateID, form.current, apiKey).then(
-      (result) => {
-        console.log(result.text);
-        setSuccess(true);
-      },
-      (error) => {
-        console.log(error.text);
-        setSuccess(false);
-      }
-    );
+    emailjs
+      .sendForm(
+        "service_fkxrj53",
+        "template_8fq0b3l",
+        form.current,
+        "maz5XYDLGqV1Eo4h7"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setSuccess(false);
+          alert("Your message has been sent. I'll get back to you soon :)");
+        },
+        (error) => {
+          console.log(error.text);
+          setSuccess(false);
+          alert("Your message hasn't been sent. Please try again later!");
+        }
+      );
   };
   return (
     <Section>
@@ -97,13 +107,14 @@ const Contacts = () => {
         <Left>
           <Form onSubmit={handleSubmit} ref={form}>
             <Label>Contact Me</Label>
-            <Input placeholder="Name" />
-            <Input placeholder="Email" style={{ borderRadius: 0 }} />
-            <TextArea placeholder="Your message" rows={10} />
-            <Button type="submit">Send</Button>
-
-            {success &&
-              "Your message has been sent. I'll get back to you soon :)"}
+            <Input placeholder="Name" name="name" />
+            <Input
+              placeholder="Email"
+              style={{ borderRadius: 0 }}
+              name="email"
+            />
+            <TextArea placeholder="Your message" rows={10} name="message" />
+            <Button type="submit">{success ? "Sending..." : "Send"}</Button>
           </Form>
         </Left>
 

@@ -8,7 +8,6 @@ const Section = styled.section`
 `;
 
 const Container = styled.div`
-  height: 90vh;
   width: 1200px;
   display: flex;
   flex-direction: row-reverse;

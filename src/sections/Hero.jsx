@@ -59,6 +59,7 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   width: 100px;
+  font-weight: 500;
 `;
 
 const Right = styled.div`

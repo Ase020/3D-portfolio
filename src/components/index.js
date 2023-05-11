@@ -1,3 +1,4 @@
 import { default as Navbar } from "./Navbar";
+import { default as MapChart } from "./MapChart";
 
-export { Navbar };
+export { Navbar, MapChart };

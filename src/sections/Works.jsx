@@ -40,7 +40,7 @@ const ListItem = styled.li`
   cursor: pointer;
   font-weight: bold;
   color: transparent;
-  -webkit-text-stroke: 1px #efefef;
+  -webkit-text-stroke: 1px #bfbebe;
 
   ::after {
     content: "${({ text }) => text}";

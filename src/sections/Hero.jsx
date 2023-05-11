@@ -1,5 +1,8 @@
+/* eslint-disable react/no-unknown-property */
 import styled from "styled-components";
 import { Navbar } from "../components";
+import { Canvas } from "@react-three/fiber";
+import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
 
 const Section = styled.section`
   height: 100vh;
@@ -75,6 +78,7 @@ const Img = styled.img`
   inset: 0;
   margin: auto;
   animation: animate 2s infinite ease alternate;
+  /* z-index: 9; */
 
   @keyframes animate {
     100% {
@@ -106,6 +110,20 @@ const Hero = () => {
         </Left>
 
         <Right>
+          <Canvas>
+            <OrbitControls enableZoom={false} />
+            <ambientLight intensity={1} />
+            <directionalLight position={[3, 2, 1]} />
+            <Sphere args={[1, 100, 200]} scale={2.5}>
+              <MeshDistortMaterial
+                color="#420a6e"
+                attach="material"
+                distort={0.5}
+                speed={2}
+              />
+            </Sphere>
+          </Canvas>
+
           <Img src="./assets/moon.png" alt="moon" />
         </Right>
       </Container>

@@ -1,4 +1,8 @@
+/* eslint-disable react/no-unknown-property */
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
+import { Cube } from "../components";
 
 const Section = styled.section`
   height: 100vh;
@@ -64,22 +68,6 @@ const Right = styled.div`
   position: relative;
 `;
 
-const Img = styled.img`
-  width: 800px;
-  height: 600px;
-  object-fit: contain;
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  animation: animate 2s infinite ease alternate;
-
-  @keyframes animate {
-    100% {
-      transform: translateY(20px);
-    }
-  }
-`;
-
 const Who = () => {
   return (
     <Section>
@@ -99,7 +87,12 @@ const Who = () => {
         </Left>
 
         <Right>
-          <Img src="./assets/moon.png" alt="moon" />
+          <Canvas camera={{ fov: 25, position: [4, 4, 4] }}>
+            <OrbitControls enableZoom={false} autoRotate />
+            <ambientLight intensity={1} />
+            <directionalLight position={[3, 2, 1]} />
+            <Cube />
+          </Canvas>
         </Right>
       </Container>
     </Section>

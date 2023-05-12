@@ -12,6 +12,7 @@ import { useGLTF } from "@react-three/drei";
 
 export default function SocialsLogo(props) {
   const { nodes, materials } = useGLTF("/socials-transformed.glb");
+
   return (
     <group {...props} dispose={null}>
       <group

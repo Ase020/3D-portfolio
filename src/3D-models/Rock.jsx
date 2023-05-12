@@ -12,6 +12,8 @@ import { useGLTF } from "@react-three/drei";
 
 export default function Rock(props) {
   const { nodes, materials } = useGLTF("/rock-transformed.glb");
+
+  materials.Rock.color.set("#3b3838");
   return (
     <group {...props} dispose={null}>
       <mesh

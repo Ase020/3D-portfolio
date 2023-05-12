@@ -12,6 +12,8 @@ import { useGLTF } from "@react-three/drei";
 
 export default function React(props) {
   const { nodes, materials } = useGLTF("/react-transformed.glb");
+
+  materials["Material.002"].color.set("#5cb5f9");
   return (
     <group {...props} dispose={null}>
       <group scale={0.01}>

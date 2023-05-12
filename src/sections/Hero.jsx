@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Navbar } from "../components";
 import { Canvas } from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
+import { useEffect, useState } from "react";
 
 const Section = styled.section`
   height: 100vh;
@@ -11,6 +12,10 @@ const Section = styled.section`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+
+  @media only screen and (max-width: 768px) {
+    height: 140vh;
+  }
 `;
 
 const Container = styled.div`
@@ -18,6 +23,14 @@ const Container = styled.div`
   width: 1200px;
   display: flex;
   justify-content: space-between;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+  }
 `;
 
 const Left = styled.div`
@@ -26,11 +39,20 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0 10px;
+
+  @media only screen and (max-width: 768px) {
+    flex: 1;
+    align-items: center;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 54px;
   margin: 12px 0;
+
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const Intro = styled.div`
@@ -52,6 +74,11 @@ const Subtitle = styled.h2`
 const Desc = styled.p`
   color: lightgray;
   font-size: 18px;
+
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+    font-size: 14px;
+  }
 `;
 
 const Button = styled.button`
@@ -68,6 +95,11 @@ const Button = styled.button`
 const Right = styled.div`
   flex: 3;
   position: relative;
+
+  @media only screen and (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+  }
 `;
 
 const Img = styled.img`
@@ -80,6 +112,11 @@ const Img = styled.img`
   animation: animate 2s infinite ease alternate;
   /* z-index: 9; */
 
+  @media only screen and (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+
   @keyframes animate {
     100% {
       transform: translateY(20px);
@@ -88,6 +125,22 @@ const Img = styled.img`
 `;
 
 const Hero = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const scaleSize = width > 768 ? 2.5 : 1.5;
+
   return (
     <Section>
       <Navbar />
@@ -114,7 +167,7 @@ const Hero = () => {
             <OrbitControls enableZoom={false} />
             <ambientLight intensity={1} />
             <directionalLight position={[3, 2, 1]} />
-            <Sphere args={[1, 100, 200]} scale={2.5}>
+            <Sphere args={[1, 100, 200]} scale={scaleSize}>
               <MeshDistortMaterial
                 color="#420a6e"
                 attach="material"

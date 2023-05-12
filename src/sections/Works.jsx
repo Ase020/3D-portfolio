@@ -1,10 +1,20 @@
+import { useState } from "react";
 import styled from "styled-components";
 
+import {
+  ProductDesign,
+  WebDesign,
+  WebDev,
+  Illustration,
+  Socials,
+} from "../components";
+
 const skills = [
-  "Frontend Development",
-  "Backend Development",
+  "Web Design",
+  "Web Development",
   "Product Design",
   "Illustration",
+  "Social Media",
 ];
 
 const Section = styled.section`
@@ -71,20 +81,47 @@ const Right = styled.div`
 `;
 
 const Works = () => {
+  const [work, setWork] = useState("Web Design");
+
+  const handleClick = (skill) => {
+    setWork(skill);
+  };
+
+  const renderComponent = () => {
+    switch (work) {
+      case "Web Design":
+        return <WebDesign />;
+      case "Web Development":
+        return <WebDev />;
+      case "Product Design":
+        return <ProductDesign />;
+      case "Illustration":
+        return <Illustration />;
+      case "Social Media":
+        return <Socials />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <Section>
       <Container>
         <Left>
           <List>
             {skills.map((skill) => (
-              <ListItem key={skill} text={skill}>
+              <ListItem
+                key={skill}
+                text={skill}
+                onClick={() => handleClick(skill)}
+              >
                 {skill}
               </ListItem>
             ))}
           </List>
         </Left>
 
-        <Right>Right</Right>
+        <Right>{renderComponent()}</Right>
       </Container>
     </Section>
   );

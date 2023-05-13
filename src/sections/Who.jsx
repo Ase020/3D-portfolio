@@ -9,6 +9,10 @@ const Section = styled.section`
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Container = styled.div`
@@ -16,6 +20,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Left = styled.div`
@@ -24,11 +32,22 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0 10px;
+
+  @media only screen and (max-width: 768px) {
+    align-items: center;
+    flex: 1;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 54px;
   margin: 12px 0;
+
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+    font-size: 42px;
+    padding: 0 10px;
+  }
 `;
 
 const Intro = styled.div`
@@ -50,6 +69,10 @@ const Subtitle = styled.h2`
 const Desc = styled.p`
   color: lightgray;
   font-size: 18px;
+
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const Button = styled.button`
@@ -66,6 +89,11 @@ const Button = styled.button`
 const Right = styled.div`
   flex: 3;
   position: relative;
+
+  @media only screen and (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+  }
 `;
 
 const Who = () => {

@@ -14,7 +14,7 @@ const Section = styled.section`
   flex-direction: column;
 
   @media only screen and (max-width: 768px) {
-    height: 140vh;
+    height: 120vh;
   }
 `;
 
@@ -139,7 +139,7 @@ const Hero = () => {
     };
   }, []);
 
-  const scaleSize = width > 768 ? 2.5 : 1.5;
+  const scaleSize = width > 768 ? 2.5 : 2;
 
   return (
     <Section>

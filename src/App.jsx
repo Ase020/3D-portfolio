@@ -19,8 +19,8 @@ function App() {
     <Container>
       <Hero />
       <Who />
-      <Works />
-      <Contacts />
+      {/* <Works />
+      <Contacts /> */}
     </Container>
   );
 }

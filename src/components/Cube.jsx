@@ -1,9 +1,25 @@
 /* eslint-disable react/no-unknown-property */
 import { PerspectiveCamera, RenderTexture, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Cube = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const fontSize = width > 768 ? 2 : 1;
+
   const textRef = useRef();
   useFrame(
     (state) =>
@@ -16,7 +32,7 @@ const Cube = () => {
         <RenderTexture attach="map">
           <PerspectiveCamera makeDefault position={[0, 0, 4]} />
           <color attach="background" args={["pink"]} />
-          <Text fontSize={2} color={"#d53232"} ref={textRef}>
+          <Text fontSize={fontSize} color={"#d53232"} ref={textRef}>
             Nice!
           </Text>
         </RenderTexture>

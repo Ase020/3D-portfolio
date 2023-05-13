@@ -2,6 +2,7 @@ import { OrbitControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
 import { SocialsLogo } from "../3D-models";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   width: 700px;
@@ -32,13 +33,29 @@ const Desc = styled.p`
 `;
 
 const Socials = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const zoom = width > 768 ? true : false;
+
   return (
     <Container>
       <Canvas>
         <Stage environment={"studio"} intensity={1} rotateOnAxis={[]}>
           <SocialsLogo position={[0, 0, 0]} scale={[2, 2, 2]} />
         </Stage>
-        <OrbitControls enableZoom={true} autoRotate />
+        <OrbitControls enableZoom={zoom} autoRotate />
       </Canvas>
 
       <Desc>

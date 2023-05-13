@@ -13,6 +13,10 @@ const Section = styled.section`
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const Container = styled.div`
@@ -20,6 +24,10 @@ const Container = styled.div`
   display: flex;
   gap: 40px;
   justify-content: space-between;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Left = styled.div`
@@ -27,6 +35,10 @@ const Left = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  @media only screen and (max-width: 768px) {
+    padding: 20px 25px;
+  }
 `;
 
 const Form = styled.form`

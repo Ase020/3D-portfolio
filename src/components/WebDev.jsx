@@ -7,6 +7,10 @@ const Container = styled.div`
   width: 700px;
   height: 100vh;
   position: relative;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Desc = styled.p`
@@ -21,6 +25,10 @@ const Desc = styled.p`
   color: gray;
   font-size: 14px;
   font-weight: 300;
+
+  @media only screen and (max-width: 768px) {
+    right: 20px;
+  }
 `;
 
 const WebDev = () => {

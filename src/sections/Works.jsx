@@ -29,12 +29,21 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 1200px;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+
+  @media only screen and (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const List = styled.ul`
@@ -73,6 +82,12 @@ const ListItem = styled.li`
         }
       }
     }
+  }
+
+  @media only screen and (max-width: 768px) {
+    font-size: 32px;
+    color: white;
+    -webkit-text-stroke: 0;
   }
 `;
 
